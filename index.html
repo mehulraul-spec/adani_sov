@@ -1,0 +1,2264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adani Share of Voice — Intelligence Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+    <style>
+        :root {
+            --bk: #080808;
+            --bk2: #111;
+            --bk3: #1c1c1c;
+            --bk4: #262626;
+            --wh: #fff;
+            --off: #f0f0ee;
+            --off2: #e8e8e5;
+            --off3: #d8d8d4;
+            --mid: #444;
+            --light: #666;
+            --lighter: #888;
+            --rule: rgba(0, 0, 0, 0.14);
+            --rule-d: rgba(255, 255, 255, 0.07);
+            --font: 'League Spartan', system-ui, sans-serif;
+            --accent1: #c0392b;
+            --accent2: #2c3e50;
+            --accent3: #e67e22;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--wh);
+            color: var(--bk);
+            font-family: var(--font);
+            -webkit-font-smoothing: antialiased;
+            font-size: 17px;
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* NAV */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 300;
+            background: var(--wh);
+            display: flex;
+            align-items: center;
+            padding: 0 36px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border-bottom: 2.5px solid rgba(0, 0, 0, 0.12);
+            box-shadow: 0 1px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            padding: 0 22px 0 0;
+            margin-right: 18px;
+            border-right: 1.5px solid var(--rule);
+            flex-shrink: 0;
+            height: 58px;
+        }
+
+        .logo-img {
+            height: 34px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            filter: grayscale(1);
+        }
+
+        .nav a {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: rgba(0, 0, 0, 0.50);
+            text-transform: uppercase;
+            padding: 18px 12px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            border-bottom: 2.5px solid transparent;
+            transition: color .15s, border-color .15s;
+        }
+
+        .nav a:hover {
+            color: var(--bk);
+            border-color: rgba(0, 0, 0, 0.30);
+        }
+
+        /* COVER */
+        .cover {
+            background: var(--bk);
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 56px;
+            position: relative;
+            overflow: hidden;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .cover-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .cover-left {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-right: 52px;
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .cover-right {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 52px;
+            position: relative;
+            gap: 10px;
+        }
+
+        .cover-eye {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.35);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .cover-eye::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        .cover h1 {
+            font-size: clamp(48px, 5.4vw, 84px);
+            font-weight: 900;
+            color: #fff;
+            line-height: 0.88;
+            letter-spacing: -3px;
+            margin-bottom: 32px;
+        }
+
+        .cover h1 em {
+            font-style: normal;
+            color: rgba(255, 255, 255, 0.22);
+        }
+
+        .cover-sub {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            color: rgba(255, 255, 255, 0.38);
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            line-height: 2;
+        }
+
+        .cover-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 520px;
+            line-height: 1.78;
+            border-left: 3px solid rgba(255, 255, 255, 0.22);
+            padding-left: 18px;
+            margin-bottom: 48px;
+        }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.07);
+            margin-top: auto;
+        }
+
+        .kpi {
+            background: var(--bk2);
+            padding: 22px 20px;
+        }
+
+        .kpi-val {
+            font-size: 40px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .kpi-lbl {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            color: rgba(255, 255, 255, 0.32);
+            text-transform: uppercase;
+        }
+
+        .cover-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            padding-top: 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 32px;
+        }
+
+        .cover-foot-meta {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.22);
+            text-transform: uppercase;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.10);
+            color: rgba(255, 255, 255, 0.60);
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            padding: 5px 13px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: auto;
+            max-height: 78vh;
+            object-fit: cover;
+            object-position: center top;
+            filter: grayscale(0.10) contrast(1.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: block;
+        }
+
+        .cover-photo-cap {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: rgb(231, 224, 224);
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* SECTIONS */
+        .sec {
+            padding: 72px 52px;
+        }
+
+        .sec.dark {
+            background: var(--bk);
+        }
+
+        .sec.grey {
+            background: var(--off);
+        }
+
+        .sec.white {
+            background: var(--wh);
+        }
+
+        .inner {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .ey {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.40);
+            margin-bottom: 6px;
+        }
+
+        .dark .ey {
+            color: rgba(255, 255, 255, 0.32);
+        }
+
+        .sec-h {
+            font-size: clamp(32px, 3.5vw, 54px);
+            font-weight: 900;
+            line-height: 0.96;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .dark .sec-h {
+            color: #fff;
+        }
+
+        .sec-sub {
+            font-size: 16px;
+            color: rgba(0, 0, 0, 0.55);
+            margin-bottom: 40px;
+            line-height: 1.68;
+            max-width: 700px;
+        }
+
+        .dark .sec-sub {
+            color: rgba(255, 255, 255, 0.48);
+        }
+
+        /* FINDING CARDS */
+        .finding-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: var(--bk);
+            margin-bottom: 36px;
+        }
+
+        @media(max-width:1100px) {
+            .finding-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .finding {
+            background: var(--off);
+            padding: 24px 18px;
+        }
+
+        .finding-num {
+            font-size: 28px;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.15);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .finding-title {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--bk);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .finding-body {
+            font-size: 13px;
+            color: var(--mid);
+            line-height: 1.62;
+        }
+
+        /* CHART CARDS */
+        .cc {
+            background: var(--wh);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            padding: 26px 28px;
+            margin-bottom: 16px;
+        }
+
+        .grey .cc {
+            background: var(--wh);
+        }
+
+        .dark .cc {
+            background: var(--bk3);
+            border-color: var(--rule-d);
+        }
+
+        .cc-ey {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.38);
+            margin-bottom: 4px;
+        }
+
+        .dark .cc-ey {
+            color: rgba(255, 255, 255, 0.30);
+        }
+
+        .cc-h {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 18px;
+            color: var(--bk);
+            letter-spacing: -0.3px;
+        }
+
+        .dark .cc-h {
+            color: #fff;
+        }
+
+        .cc-source {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.38);
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.10);
+        }
+
+        .dark .cc-source {
+            color: rgba(255, 255, 255, 0.30);
+            border-color: var(--rule-d);
+        }
+
+        .ch {
+            position: relative;
+        }
+
+        .h200 {
+            height: 200px;
+        }
+
+        .h240 {
+            height: 240px;
+        }
+
+        .h280 {
+            height: 280px;
+        }
+
+        .h300 {
+            height: 300px;
+        }
+
+        .h160 {
+            height: 160px;
+        }
+
+        .h320 {
+            height: 320px;
+        }
+
+        /* GRIDS */
+        .g2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .g3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        @media(max-width:900px) {
+
+            .g2,
+            .g3 {
+                grid-template-columns: 1fr;
+            }
+
+            .cover {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-right {
+                display: none;
+            }
+        }
+
+        /* STAT TILES */
+        .st {
+            background: var(--off2);
+            padding: 26px 22px;
+            border-left: 4px solid var(--bk);
+        }
+
+        .grey .st {
+            background: var(--wh);
+            border-left-color: var(--bk);
+        }
+
+        .dark .st {
+            background: var(--bk3);
+            border-left-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .st-val {
+            font-size: 46px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .dark .st-val {
+            color: #fff;
+        }
+
+        .st-lbl {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 4px;
+        }
+
+        .dark .st-lbl {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .st-ctx {
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.55;
+        }
+
+        .dark .st-ctx {
+            color: rgba(255, 255, 255, 0.52);
+        }
+
+        /* CALLOUT */
+        .callout {
+            background: var(--off2);
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            border-left: 4px solid var(--bk);
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .dark .callout {
+            background: var(--bk3);
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .callout-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .callout-title {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: var(--bk);
+        }
+
+        .dark .callout-title {
+            color: #fff;
+        }
+
+        .callout-body {
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.68;
+        }
+
+        .dark .callout-body {
+            color: rgba(255, 255, 255, 0.60);
+        }
+
+        .callout-body strong {
+            color: var(--bk);
+            font-weight: 800;
+        }
+
+        .dark .callout-body strong {
+            color: #fff;
+        }
+
+        /* NARRATIVE BLOCK */
+        .narrative {
+            background: var(--wh);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-left: 4px solid var(--bk);
+            padding: 28px 30px;
+            margin-bottom: 14px;
+        }
+
+        .grey .narrative {
+            background: var(--off);
+            border-left-color: var(--bk);
+        }
+
+        .nar-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .nar-num {
+            font-size: 44px;
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.08);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .nar-badge {
+            display: inline-block;
+            background: var(--bk);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            padding: 3px 10px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .nar-badge.red {
+            background: #c0392b;
+        }
+
+        .nar-badge.orange {
+            background: #e67e22;
+        }
+
+        .nar-badge.blue {
+            background: #2980b9;
+        }
+
+        .nar-badge.green {
+            background: #27ae60;
+        }
+
+        .nar-badge.purple {
+            background: #8e44ad;
+        }
+
+        .nar-title {
+            font-size: 19px;
+            font-weight: 900;
+            color: var(--bk);
+            line-height: 1.2;
+        }
+
+        .nar-body {
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.75;
+            margin-bottom: 14px;
+        }
+
+        .nar-quotes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media(max-width:900px) {
+            .nar-quotes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .nar-q {
+            background: var(--off2);
+            padding: 14px 16px;
+            border-top: 3px solid var(--bk);
+        }
+
+        .nar-q-text {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--mid);
+            line-height: 1.62;
+            margin-bottom: 7px;
+        }
+
+        .nar-q-handle {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: rgba(0, 0, 0, 0.42);
+            text-transform: uppercase;
+        }
+
+        .nar-q-src {
+            font-size: 9px;
+            font-weight: 700;
+            color: rgba(0, 0, 0, 0.32);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            float: right;
+        }
+
+        /* SOV FLOW */
+        .sov-flow {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            gap: 0;
+            background: var(--bk);
+            margin-bottom: 28px;
+        }
+
+        .sov-period {
+            background: var(--off2);
+            padding: 30px 26px;
+        }
+
+        .sov-period.b {
+            background: var(--off3);
+        }
+
+        .sov-arrow {
+            background: var(--bk);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .sov-period-label {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 10px;
+        }
+
+        .sov-period-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--bk);
+            margin-bottom: 16px;
+        }
+
+        .sov-period-val {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .sov-period-sub {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--mid);
+        }
+
+        .sov-bars {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sov-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sov-bar-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--mid);
+            width: 62px;
+            flex-shrink: 0;
+        }
+
+        .sov-bar-track {
+            flex: 1;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.10);
+        }
+
+        .sov-bar-fill {
+            height: 100%;
+            background: var(--bk);
+            transition: width .5s;
+        }
+
+        .sov-bar-pct {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--bk);
+            width: 32px;
+            text-align: right;
+        }
+
+        /* TABLE */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .data-table th {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mid);
+            padding: 10px 12px;
+            border-bottom: 2.5px solid rgba(0, 0, 0, 0.12);
+            text-align: left;
+        }
+
+        .dark .data-table th {
+            color: rgba(255, 255, 255, 0.40);
+            border-color: var(--rule-d);
+        }
+
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            color: var(--mid);
+            vertical-align: top;
+        }
+
+        .dark .data-table td {
+            border-color: var(--rule-d);
+            color: rgba(255, 255, 255, 0.62);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table a {
+            color: var(--bk);
+            font-weight: 700;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .dark .data-table a {
+            color: #fff;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            background: var(--bk);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 900;
+            padding: 3px 6px;
+            min-width: 22px;
+            text-align: center;
+        }
+
+        .dark .rank-badge {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        /* PROSE */
+        .prose {
+            font-size: 15px;
+            color: var(--mid);
+            line-height: 1.76;
+            margin-bottom: 16px;
+        }
+
+        .dark .prose {
+            color: rgba(255, 255, 255, 0.58);
+        }
+
+        .prose strong {
+            color: var(--bk);
+            font-weight: 800;
+        }
+
+        .dark .prose strong {
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        /* SCORE DISPLAY */
+        .score-display {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 24px 28px;
+            background: var(--off2);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-left: 5px solid var(--bk);
+            margin-bottom: 20px;
+        }
+
+        .score-number {
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--bk);
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+
+        .score-label {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 6px;
+        }
+
+        .score-desc {
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.65;
+        }
+
+        .score-desc strong {
+            color: var(--bk);
+            font-weight: 800;
+        }
+
+        /* RULE */
+        .rule {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .rule.heavy {
+            height: 3px;
+            background: var(--bk);
+        }
+
+        /* DATA FOOTNOTE */
+        .data-fn {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.10);
+        }
+
+        .dark .data-fn {
+            color: rgba(255, 255, 255, 0.30);
+            border-color: var(--rule-d);
+        }
+
+        /* PLATFORM PILL */
+        .platform-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border: 1px solid rgba(0, 0, 0, 0.14);
+            color: var(--mid);
+            background: var(--off);
+        }
+
+        /* IMPL CARDS */
+        .impl-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        @media(max-width:900px) {
+            .impl-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .impl-card {
+            padding: 22px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-top: 4px solid var(--bk);
+            background: var(--off);
+        }
+
+        .impl-card-label {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 8px;
+        }
+
+        .impl-card-title {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--bk);
+            margin-bottom: 9px;
+        }
+
+        .impl-card-body {
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.68;
+        }
+
+        .impl-card-body strong {
+            color: var(--bk);
+            font-weight: 800;
+        }
+
+        /* SPLIT */
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        @media(max-width:900px) {
+            .split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .split-pane {
+            padding: 28px;
+        }
+
+        .split-pane.left {
+            background: var(--off2);
+            border-right: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        .split-pane.right {
+            background: var(--off);
+        }
+
+        .split-label {
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-bottom: 10px;
+        }
+
+        .split-h {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--bk);
+            margin-bottom: 12px;
+        }
+
+        .split-body {
+            font-size: 14px;
+            color: var(--mid);
+            line-height: 1.70;
+        }
+
+        .split-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .split-tag {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 3px 10px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.10);
+            color: var(--mid);
+        }
+
+        /* FILTER / PAGINATION BUTTONS */
+        .src-filter-btn {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border: 1px solid rgba(0, 0, 0, 0.18);
+            background: transparent;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.45);
+            transition: all .15s;
+        }
+
+        .src-filter-btn.active,
+        .src-filter-btn:hover {
+            background: var(--bk);
+            color: #fff;
+            border-color: var(--bk);
+        }
+
+        .src-pg-btn {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 13px;
+            border: 1px solid rgba(0, 0, 0, 0.18);
+            background: transparent;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.45);
+            transition: all .15s;
+        }
+
+        .src-pg-btn:hover:not(:disabled) {
+            background: var(--bk);
+            color: #fff;
+            border-color: var(--bk);
+        }
+
+        .src-pg-btn:disabled {
+            opacity: .3;
+            cursor: default;
+        }
+
+        .src-pg-num {
+            font-size: 9px;
+            font-weight: 900;
+            padding: 5px 9px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            background: transparent;
+            color: rgba(0, 0, 0, 0.45);
+        }
+
+        .src-pg-num.active {
+            background: var(--bk);
+            color: #fff;
+            border-color: var(--bk);
+        }
+
+        .plat-yt {
+            background: #c0392b;
+            color: #fff;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            text-transform: uppercase;
+        }
+
+        .plat-ig {
+            background: #2c3e50;
+            color: #fff;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            text-transform: uppercase;
+        }
+
+        .plat-news {
+            background: #555;
+            color: #fff;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            padding: 2px 7px;
+            text-transform: uppercase;
+        }
+
+        .nar-pill {
+            font-size: 7px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.08);
+            color: var(--mid);
+        }
+
+        .nar-pill.red {
+            background: #fde8e8;
+            color: #c0392b;
+        }
+
+        .nar-pill.orange {
+            background: #fef3e2;
+            color: #d35400;
+        }
+
+        .nar-pill.blue {
+            background: #e8f0fe;
+            color: #2980b9;
+        }
+
+        .nar-pill.green {
+            background: #e8f8e8;
+            color: #27ae60;
+        }
+
+        .nar-pill.grey {
+            background: #f0f0ee;
+            color: #666;
+        }
+
+        @media print {
+            .nav {
+                display: none;
+            }
+
+            .sec {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-logo">
+            <img src="by_logo.jpg" alt="Barcode" class="logo-img">
+        </div>
+        <a href="#exec">Summary</a>
+        <a href="#sov">SOV Shift</a>
+        <a href="#narratives">Narratives</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#sources">Sources</a>
+        <a href="#implications">Implications</a>
+    </nav>
+
+    <!-- COVER -->
+    <section class="cover" id="cover">
+        <div class="cover-grid"></div>
+        <div class="cover-left">
+            <div>
+                <div class="cover-eye">Share of Voice Intelligence Analysis</div>
+                <h1>Adani<br>SOV: <em>The</em><br>Denominator<br><em>Effect</em></h1>
+                <div class="cover-sub">Google News · Search · Reddit · Instagram · YouTube &nbsp;|&nbsp; Nov '24 – Apr
+                    '26 &nbsp;|&nbsp; Published Jun 2026</div>
+                <p class="cover-desc">Adani Group's positive Share of Voice collapsed from 38.5% to 14.2% in 18 months —
+                    despite brand communications spend remaining flat. The cause is not reduced positive output. It is
+                    an unprecedented 239% surge in hostile third-party conversation volume flooding the denominator.</p>
+            </div>
+            <div>
+                <div class="kpi-row">
+                    <div class="kpi">
+                        <div class="kpi-val" style="color:#e74c3c;">−63%</div>
+                        <div class="kpi-lbl">Positive SOV Drop</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val">239%</div>
+                        <div class="kpi-lbl">Negative Volume Surge</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val">206K</div>
+                        <div class="kpi-lbl">Current Conversation Pool</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val">6</div>
+                        <div class="kpi-lbl">Active Hostile Narratives</div>
+                    </div>
+                </div>
+                <div class="cover-foot">
+                    <div class="cover-foot-meta">Barcode Entertainment · Confidential · Jun 2026</div>
+                    <span class="badge">Period A: Nov '24–Apr '25 vs Period B: Nov '25–Apr '26</span>
+                </div>
+            </div>
+        </div>
+        <div class="cover-right">
+            <img src="afr1tnho_gautam-adani_625x300_16_January_24.webp" alt="Gautam Adani" class="cover-photo">
+            <div class="cover-photo-cap">Gautam Adani — Adani Group Chairman</div>
+        </div>
+    </section>
+
+    <div class="rule heavy"></div>
+
+    <!-- EXECUTIVE SUMMARY -->
+    <section class="sec grey" id="exec">
+        <div class="inner">
+            <div class="ey">01 — Executive Summary</div>
+            <h2 class="sec-h">Five Findings at a Glance</h2>
+            <p class="sec-sub">The decline in positive Share of Voice is not a brand output failure. It is a denominator
+                crisis. Hostile third-party content has flooded every major digital channel simultaneously,
+                mathematically diluting Adani's stable positive messaging into single-digit relevance on some platforms.
+            </p>
+            <div class="finding-grid">
+                <div class="finding">
+                    <div class="finding-num">01</div>
+                    <div class="finding-title">The Denominator Exploded</div>
+                    <div class="finding-body">Total conversation volume grew 239% — from ~60,750 trackable mentions to
+                        over 206,000. Positive brand content stayed flat. The math is brutal: same numerator, 3×
+                        denominator = collapse.</div>
+                </div>
+                <div class="finding">
+                    <div class="finding-num">02</div>
+                    <div class="finding-title">Three Domestic Flashpoints</div>
+                    <div class="finding-body">Smart meter billing outrage (65K mentions), Vedanta/Jaiprakash insolvency
+                        bias (28.5K), and Congress's Nicobar ecological campaign (42K) each independently triggered mass
+                        engagement.</div>
+                </div>
+                <div class="finding">
+                    <div class="finding-num">03</div>
+                    <div class="finding-title">International Validation Loop</div>
+                    <div class="finding-body">OFAC's $275M sanctions settlement and the DOJ bribery case dismissal gave
+                        domestic critics credible foreign authority to cite — amplifying every local narrative
+                        simultaneously.</div>
+                </div>
+                <div class="finding">
+                    <div class="finding-num">04</div>
+                    <div class="finding-title">Sentiment Radicalization</div>
+                    <div class="finding-body">Negative sentiment escalated from 41.2% to 76.8% across all platforms.
+                        YouTube reached 82.1% negative. Reddit hit 84.6%. The audience is no longer skeptical — it is
+                        hostile.</div>
+                </div>
+                <div class="finding">
+                    <div class="finding-num">05</div>
+                    <div class="finding-title">Budget Parity is Insufficient</div>
+                    <div class="finding-body">Maintaining baseline spend in a 3× larger, algorithmically hostile
+                        environment guarantees further SOV erosion. Volume, localization, and pre-bunking must scale to
+                        match the new denominator.</div>
+                </div>
+            </div>
+
+            <div class="callout">
+                <div class="callout-icon">📌</div>
+                <div>
+                    <div class="callout-title">The Core Mechanism</div>
+                    <div class="callout-body">SOV is a ratio: <strong>Positive Mentions ÷ Total Mentions</strong>.
+                        Adani's positive messaging (the numerator) remained broadly stable. The total conversation (the
+                        denominator) tripled. <strong>A stable numerator divided by an exploding denominator always
+                            approaches zero.</strong> This is not a campaign quality problem. It is a volume equilibrium
+                        problem that requires a corresponding volume response.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- SOV SHIFT — THEN VS NOW -->
+    <section class="sec white" id="sov">
+        <div class="inner">
+            <div class="ey">02 — SOV Quantification · Then vs Now</div>
+            <h2 class="sec-h">A Structural Shift, Not a Campaign Failure</h2>
+            <p class="sec-sub">Positive Share of Voice across all tracked platforms has collapsed in Period B — not
+                because Adani communicated less, but because the total conversation pool tripled with hostile content.
+            </p>
+
+            <!-- Period A vs B Flow -->
+            <div class="sov-flow">
+                <div class="sov-period">
+                    <div class="sov-period-label">Period A — Baseline</div>
+                    <div class="sov-period-title">Nov 2024 – Apr 2025</div>
+                    <div class="sov-period-val" style="color:#27ae60;">38.5%</div>
+                    <div class="sov-period-sub">Positive SOV · All Platforms</div>
+                    <div class="sov-bars">
+                        <div class="sov-bar-row"><span class="sov-bar-label">Google News</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:42.1%;"></div>
+                            </div><span class="sov-bar-pct">42.1%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">Org Search</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:36.5%;"></div>
+                            </div><span class="sov-bar-pct">36.5%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">Reddit</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:18.2%;"></div>
+                            </div><span class="sov-bar-pct">18.2%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">Instagram</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:35.8%;"></div>
+                            </div><span class="sov-bar-pct">35.8%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">YouTube</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:31.4%;"></div>
+                            </div><span class="sov-bar-pct">31.4%</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:14px;font-size:12px;color:var(--mid);"><strong>Total Volume: ~60,750</strong>
+                        mentions tracked</div>
+                </div>
+                <div class="sov-arrow">→</div>
+                <div class="sov-period b">
+                    <div class="sov-period-label">Period B — Current Surge</div>
+                    <div class="sov-period-title">Nov 2025 – Apr 2026</div>
+                    <div class="sov-period-val" style="color:#c0392b;">14.2%</div>
+                    <div class="sov-period-sub">Positive SOV · All Platforms</div>
+                    <div class="sov-bars">
+                        <div class="sov-bar-row"><span class="sov-bar-label">Google News</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:18.4%;background:#c0392b;"></div>
+                            </div><span class="sov-bar-pct" style="color:#c0392b;">18.4%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">Org Search</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:15.2%;background:#c0392b;"></div>
+                            </div><span class="sov-bar-pct" style="color:#c0392b;">15.2%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">Reddit</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:6.1%;background:#c0392b;"></div>
+                            </div><span class="sov-bar-pct" style="color:#c0392b;">6.1%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">Instagram</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:11.5%;background:#c0392b;"></div>
+                            </div><span class="sov-bar-pct" style="color:#c0392b;">11.5%</span>
+                        </div>
+                        <div class="sov-bar-row"><span class="sov-bar-label">YouTube</span>
+                            <div class="sov-bar-track">
+                                <div class="sov-bar-fill" style="width:9.8%;background:#c0392b;"></div>
+                            </div><span class="sov-bar-pct" style="color:#c0392b;">9.8%</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:14px;font-size:12px;color:var(--mid);"><strong>Total Volume:
+                            ~206,200</strong> mentions tracked (+239%)</div>
+                </div>
+            </div>
+
+            <div class="g2" style="margin-bottom:16px;">
+                <div class="cc">
+                    <div class="cc-ey">Chart A — Volume Explosion by Platform</div>
+                    <div class="cc-h">Period A vs Period B — Total Mention Volume</div>
+                    <div class="ch h280"><canvas id="volBar"></canvas></div>
+                    <div class="cc-source">NLP-tagged aggregated dataset · Google News, Organic Search, Reddit,
+                        Instagram SERP, YouTube · Jun 2026</div>
+                </div>
+                <div class="cc">
+                    <div class="cc-ey">Chart B — Sentiment Radicalization</div>
+                    <div class="cc-h">% Negative Sentiment: Period A vs Period B</div>
+                    <div class="ch h280"><canvas id="sentBar"></canvas></div>
+                    <div class="cc-source">Negative tier: NLP-tagged hostile, anti-brand, or politically charged
+                        mentions · Jun 2026</div>
+                </div>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Platform</th>
+                            <th>Period A Total</th>
+                            <th>Period B Total</th>
+                            <th>% Change</th>
+                            <th>Neg % A</th>
+                            <th>Neg % B</th>
+                            <th>+ve SOV A</th>
+                            <th>+ve SOV B</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Google News</strong></td>
+                            <td>12,450</td>
+                            <td>38,200</td>
+                            <td style="color:#c0392b;font-weight:900;">+206.8%</td>
+                            <td>34.5%</td>
+                            <td>68.2%</td>
+                            <td style="color:#27ae60;font-weight:900;">42.1%</td>
+                            <td style="color:#c0392b;font-weight:900;">18.4%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Organic Search</strong></td>
+                            <td>8,900</td>
+                            <td>24,150</td>
+                            <td style="color:#c0392b;font-weight:900;">+171.3%</td>
+                            <td>38.0%</td>
+                            <td>71.5%</td>
+                            <td style="color:#27ae60;font-weight:900;">36.5%</td>
+                            <td style="color:#c0392b;font-weight:900;">15.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reddit</strong></td>
+                            <td>2,100</td>
+                            <td>9,850</td>
+                            <td style="color:#c0392b;font-weight:900;">+369.0%</td>
+                            <td>52.4%</td>
+                            <td>84.6%</td>
+                            <td style="color:#27ae60;font-weight:900;">18.2%</td>
+                            <td style="color:#c0392b;font-weight:900;">6.1%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Instagram SERP</strong></td>
+                            <td>14,500</td>
+                            <td>45,600</td>
+                            <td style="color:#c0392b;font-weight:900;">+214.4%</td>
+                            <td>45.1%</td>
+                            <td>79.3%</td>
+                            <td style="color:#27ae60;font-weight:900;">35.8%</td>
+                            <td style="color:#c0392b;font-weight:900;">11.5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>YouTube</strong></td>
+                            <td>22,800</td>
+                            <td>88,400</td>
+                            <td style="color:#c0392b;font-weight:900;">+287.7%</td>
+                            <td>48.6%</td>
+                            <td>82.1%</td>
+                            <td style="color:#27ae60;font-weight:900;">31.4%</td>
+                            <td style="color:#c0392b;font-weight:900;">9.8%</td>
+                        </tr>
+                        <tr style="background:var(--off2);">
+                            <td><strong>AGGREGATE</strong></td>
+                            <td><strong>60,750</strong></td>
+                            <td><strong>206,200</strong></td>
+                            <td style="color:#c0392b;font-weight:900;">+239.4%</td>
+                            <td>41.2%</td>
+                            <td>76.8%</td>
+                            <td style="color:#27ae60;font-weight:900;font-size:15px;">38.5%</td>
+                            <td style="color:#c0392b;font-weight:900;font-size:15px;">14.2%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="data-fn">Source: Aggregated NLP-tagged data across Google News, Organic Search, Reddit,
+                Instagram SERP, YouTube Vids/Comments · Periods: Nov 2024–Apr 2025 (A) vs Nov 2025–Apr 2026 (B)</div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- NEGATIVE NARRATIVE BREAKDOWN -->
+    <section class="sec grey" id="narratives">
+        <div class="inner">
+            <div class="ey">03 — Negative Narrative Volume Breakdown</div>
+            <h2 class="sec-h">Six Hostile Narratives Flooding the Denominator</h2>
+            <p class="sec-sub">The conversational surge is not random. Three domestic flashpoints, two international
+                legal dramas, and one ongoing geopolitical humiliation are each independently driving massive hostile
+                volume — and they are mutually reinforcing.</p>
+
+            <div class="cc" style="margin-bottom:16px;">
+                <div class="cc-ey">Chart C — Estimated Hostile Volume by Narrative (Period B)</div>
+                <div class="cc-h">Negative Mention Volume per Hostile Narrative</div>
+                <div class="ch h280"><canvas id="narrativeVol"></canvas></div>
+                <div class="cc-source">Deep research + scraped data · Estimates based on cross-platform tracking · Jun
+                    2026</div>
+            </div>
+
+            <!-- Narrative 1 -->
+            <div class="narrative">
+                <div class="nar-header">
+                    <div class="nar-num">1</div>
+                    <div>
+                        <div class="nar-badge red">~65,400 Mentions · Instagram Heavy · YT Regional</div>
+                        <div class="nar-title">CM Vijay / Smart Meter Billing Outrage</div>
+                    </div>
+                </div>
+                <p class="nar-body">The largest single driver of hostile volume. Tamil Nadu CM Vijay scrapped Adani's
+                    ₹20,000-crore smart meter project as a political victory; Maharashtra's Shiv Sena (UBT), MNS and
+                    CPI(M) launched militant morchas against installations. A suspended Mahavitaran engineer who opposed
+                    the rollout became a martyr. Consumers experiencing doubled or tripled bills — including a viral ₹48
+                    lakh erroneous bill — took directly to Adani Electricity's official Instagram to vent. This
+                    narrative bypasses PR defenses because it translates abstract "crony capitalism" into personal
+                    household cash flow.</p>
+                <div class="nar-quotes">
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Fed up of endless power cuts and inflated bills by Adani Electricity?
+                            😡🔌 It's time to make our frustration heard! Unannounced blackouts have become the 'new
+                            normal.'"</div>
+                        <div class="nar-q-handle">IG · CM Vijay Electric Meter<span class="nar-q-src">High
+                                Engagement</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Adani k light matter me bahut bill aa raha hai pahle hamara 500-600
+                            light bill aata tha ab 2100-2200 tak aata hai"</div>
+                        <div class="nar-q-handle">YT Comment · Consumer<span class="nar-q-src">Organic</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Smart meter woes: ₹48L bill sparks public outrage, political uproar"
+                        </div>
+                        <div class="nar-q-handle">Times of India · Headline<span class="nar-q-src">Google News</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Narrative 2 -->
+            <div class="narrative">
+                <div class="nar-header">
+                    <div class="nar-num">2</div>
+                    <div>
+                        <div class="nar-badge orange">~42,100 Mentions · YouTube Heavy · Instagram Reels</div>
+                        <div class="nar-title">Congress / Great Nicobar — "Ecocide for Adani"</div>
+                    </div>
+                </div>
+                <p class="nar-body">Rahul Gandhi's viral scuba-diving visit to Andaman, his "We choose green over greed"
+                    campaign, and Jairam Ramesh's systematic questioning of the ₹81,000-crore Great Nicobar project
+                    turned an infrastructure plan into the defining anti-Adani environmental campaign. The narrative
+                    merges climate anxiety, tribal rights, and anti-corporate politics — with visually stunning
+                    rainforest and coral reef content that algorithms heavily favor. Congress explicitly states the
+                    defense rationale is a "smokescreen to hand sovereign land to Adani."</p>
+                <div class="nar-quotes">
+                    <div class="nar-q">
+                        <div class="nar-q-text">"It's amazing that 160 square kilometres of this forest are being
+                            chopped up so that one businessman Mr. Adani can fulfil his fantasies."</div>
+                        <div class="nar-q-handle">Rahul Gandhi Clip<span class="nar-q-src">IG Influencer</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"The point is that they want to help Mr. Adani and these criminals are
+                            hiding behind the Navy, behind the forces, to steal Indian land."</div>
+                        <div class="nar-q-handle">Rahul Gandhi · YouTube<span class="nar-q-src">News Spread</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Congress leader Rahul Gandhi has termed the Great Nicobar Island
+                            Project a 'planned ecocide' designed solely to benefit Gautam Adani."</div>
+                        <div class="nar-q-handle">Reddit · r/unitedstatesofindia<span class="nar-q-src">Forum
+                                Spread</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Narrative 3 -->
+            <div class="narrative">
+                <div class="nar-header">
+                    <div class="nar-num">3</div>
+                    <div>
+                        <div class="nar-badge" style="background:#8e44ad;">~35,000 Mentions · Global Financial Press ·
+                            Reddit</div>
+                        <div class="nar-title">OFAC $275M Sanctions Settlement — "Egregious" Official Verdict</div>
+                    </div>
+                </div>
+                <p class="nar-body">US Treasury OFAC's May 2026 settlement with Adani Enterprises resolved 32
+                    "egregious" violations: AEL caused US financial institutions to process ~$192M for Iranian-origin
+                    LPG via a Dubai middleman, ignoring blatant red flags including commercially implausible discounted
+                    prices. This is not an allegation — it is an official US government legal finding, and domestic
+                    critics immediately weaponize it to bypass local regulatory defenses. It acts as objective,
+                    internationally credentialed proof of systemic compliance failures.</p>
+                <div class="nar-quotes">
+                    <div class="nar-q">
+                        <div class="nar-q-text">"The document literally noted that the Dubai Supplier was offering
+                            'discounted LPG from Middle East.' That phrase, in hindsight, was a confession."</div>
+                        <div class="nar-q-handle">Global Financial Press<span class="nar-q-src">OFAC Analysis</span>
+                        </div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Adani pays $275M US Penalty. The next question: who ultimately funded
+                            that settlement?"</div>
+                        <div class="nar-q-handle">Reddit · r/india<span class="nar-q-src">Taxpayer Nexus</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"If Adani flouts international sanctions this casually, what exactly are
+                            Indian regulators not catching?"</div>
+                        <div class="nar-q-handle">Reddit · r/IndianStockMarket<span class="nar-q-src">Domestic
+                                Echo</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Narrative 4 -->
+            <div class="narrative">
+                <div class="nar-header">
+                    <div class="nar-num">4</div>
+                    <div>
+                        <div class="nar-badge" style="background:#2980b9;">~28,500 Mentions · Reddit · Financial Press
+                        </div>
+                        <div class="nar-title">Vedanta vs Adani — Rigged Insolvency Proof</div>
+                    </div>
+                </div>
+                <p class="nar-body">Vedanta's higher cash bid (revised to ₹6,563 crore vs Adani's ₹14,535 crore plan for
+                    Jaiprakash Associates) lost at NCLAT, which upheld the Committee of Creditors' "commercial wisdom."
+                    Vedanta escalated to the Supreme Court. The public discourse distills this into a single,
+                    mathematically stark proof: Vedanta bid more, Adani won anyway. For retail investors and the
+                    financially literate Reddit community, this violates basic free-market logic and confirms that the
+                    judicial apparatus is "tailor-made" for the Adani Group.</p>
+                <div class="nar-quotes">
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Vedanta bid ₹17,000 cr. Adani bid ₹14,535 cr. Yet Adani wins. The
+                            matter has reached the Supreme Court."</div>
+                        <div class="nar-q-handle">Financial Analysis Post<span class="nar-q-src">LinkedIn /
+                                Reddit</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"कम बोली लगाकर भी कैसे खरीद की जाती है, लोगों को अडानी से सिखना चाहिए।"
+                            (How to win with a lower bid — learn from Adani.)</div>
+                        <div class="nar-q-handle">Facebook / News18 User<span class="nar-q-src">Comment</span></div>
+                    </div>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"Adani: Fast, upfront, and ready to strike. Vedanta: Bigger offer, but
+                            slow on delivery." (framed as sardonic praise)</div>
+                        <div class="nar-q-handle">Instagram Influencer Reel<span class="nar-q-src">78 Likes</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Narrative 5 + 6 compact -->
+            <div class="g2">
+                <div class="narrative" style="margin-bottom:0;">
+                    <div class="nar-header">
+                        <div class="nar-num">5</div>
+                        <div>
+                            <div class="nar-badge green">~20,500 Mentions · YouTube Geopolitics</div>
+                            <div class="nar-title">Kenya Airport Loss — "Chased Out"</div>
+                        </div>
+                    </div>
+                    <p class="nar-body" style="margin-bottom:10px;">Adani's $2.6B unsolicited JKIA bid was rejected
+                        after mass protests and aviation strikes. Kenya re-awarded to China's CCCC — a direct blow to
+                        Indian soft power, widely amplified by Kenyan and Indian social media users alike as proof of
+                        global reputational contagion.</p>
+                    <div class="nar-q" style="border-top-color:#27ae60;">
+                        <div class="nar-q-text">"ADANI once wanted to run our airport in Kenya but we Kenyans we chase
+                            them 😂😂😂"</div>
+                        <div class="nar-q-handle">@Alithetrucker<span class="nar-q-src">YT · 10 likes</span></div>
+                    </div>
+                </div>
+                <div class="narrative" style="margin-bottom:0;">
+                    <div class="nar-header">
+                        <div class="nar-num">6</div>
+                        <div>
+                            <div class="nar-badge" style="background:#666;">~18,000 Mentions · Regional News + Reddit
+                            </div>
+                            <div class="nar-title">Bangladesh Godda — Arbitration Initiated</div>
+                        </div>
+                    </div>
+                    <p class="nar-body" style="margin-bottom:10px;">Bangladesh's National Review Committee flagged a
+                        39.7% pricing premium in the Adani Godda power contract. UK law firm appointed for Singapore
+                        arbitration. Validates the "opaque political deal" narrative across South Asia.</p>
+                    <div class="nar-q">
+                        <div class="nar-q-text">"The agreement with Adani was signed by Hasina who never thought about
+                            the people of Bangladesh. She signed it for her own gain, and for her master Modi."</div>
+                        <div class="nar-q-handle">@munemshahriar<span class="nar-q-src">YT Comment</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- PLATFORM ARCHITECTURE -->
+    <section class="sec white" id="platforms">
+        <div class="inner">
+            <div class="ey">04 — Platform Architecture Map</div>
+            <h2 class="sec-h">Where Narratives Incubate, Propagate, and Peak</h2>
+            <p class="sec-sub">Each hostile narrative follows a specific platform pathway. Understanding this
+                architecture is prerequisite to any counter-deployment strategy — generic content placed on the wrong
+                platform at the wrong stage of a narrative lifecycle achieves nothing.</p>
+
+            <div class="cc" style="margin-bottom:16px;">
+                <div class="cc-ey">Chart D — Platform Reach Estimate by Narrative</div>
+                <div class="cc-h">Estimated Audience Reach per Hostile Narrative × Platform</div>
+                <div class="ch h300"><canvas id="platformReach"></canvas></div>
+                <div class="cc-source">Estimated unique reach based on view counts, follower data, and comment volume ·
+                    Jun 2026</div>
+            </div>
+
+            <div style="overflow-x:auto;margin-bottom:16px;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Narrative</th>
+                            <th>Primary Platform</th>
+                            <th>Secondary Platform</th>
+                            <th>Content Format</th>
+                            <th>Est. Reach</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Smart Meter Outrage</strong></td>
+                            <td><span class="platform-pill">Instagram</span></td>
+                            <td><span class="platform-pill">YouTube Regional</span></td>
+                            <td>Outrage reels, official channel comment harassment, protest clips</td>
+                            <td style="font-weight:900;">70M+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Congress / Nicobar</strong></td>
+                            <td><span class="platform-pill">YouTube Political</span></td>
+                            <td><span class="platform-pill">Instagram Influencer</span></td>
+                            <td>Mini-documentaries, scuba clips, "greed over green" infographics</td>
+                            <td style="font-weight:900;">40M+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OFAC / US DOJ</strong></td>
+                            <td><span class="platform-pill">Google Search</span></td>
+                            <td><span class="platform-pill">Reddit</span></td>
+                            <td>News syndication, geopolitical threads, financial analysis</td>
+                            <td style="font-weight:900;">25M+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vedanta / Jaiprakash</strong></td>
+                            <td><span class="platform-pill">Reddit</span></td>
+                            <td><span class="platform-pill">Google News</span></td>
+                            <td>Long-form financial analysis, legal reporting</td>
+                            <td style="font-weight:900;">15M+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kenya Airport</strong></td>
+                            <td><span class="platform-pill">YouTube Geopolitics</span></td>
+                            <td><span class="platform-pill">Google News</span></td>
+                            <td>Vlogs, international news aggregation, diaspora commentary</td>
+                            <td style="font-weight:900;">10M+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bangladesh Godda</strong></td>
+                            <td><span class="platform-pill">Regional News</span></td>
+                            <td><span class="platform-pill">Reddit</span></td>
+                            <td>Diplomatic/energy press, commentary threads</td>
+                            <td style="font-weight:900;">8M+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="split" style="border:1px solid rgba(0,0,0,0.12);">
+                <div class="split-pane left">
+                    <div class="split-label">🔴 Why Video Platforms Amplify Fastest</div>
+                    <div class="split-h">Algorithm Architecture Favours Outrage</div>
+                    <div class="split-body">YouTube mentions grew 287.7% — the highest of any platform. Visual platforms
+                        optimize for watch-time and high-arousal emotional content. A consumer rage-video about a
+                        doubled electricity bill, a Rahul Gandhi "ecocide" speech, or a sarcastic "bribed out of a
+                        bribery charge" short achieves exponentially more organic reach than a polished brand press
+                        release about a new solar farm. The algorithm is structurally hostile to neutral or positive
+                        corporate content on emotionally charged topics.</div>
+                    <div class="split-tags">
+                        <span class="split-tag">287.7% YT Growth</span><span class="split-tag">82.1%
+                            Negative</span><span class="split-tag">Watch-Time Bias</span>
+                    </div>
+                </div>
+                <div class="split-pane right">
+                    <div class="split-label">🟠 How Reddit Incubates Into News</div>
+                    <div class="split-h">Forum-to-Mainstream Pipeline</div>
+                    <div class="split-body">Reddit (r/IndianStockMarket, r/india) functions as the incubator where
+                        financially literate critics build detailed, text-heavy analyses. These threads are then indexed
+                        by Google, quoted in financial journalism, and screen-captured for Instagram shares. The Vedanta
+                        bid comparison (₹17K vs ₹14K) originated as forum analysis before becoming a mainstream
+                        shorthand. Negative sentiment on Reddit hit 84.6% — the highest of any tracked platform.</div>
+                    <div class="split-tags">
+                        <span class="split-tag">369% Reddit Growth</span><span class="split-tag">84.6%
+                            Negative</span><span class="split-tag">Forum → Press Pipeline</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- SOURCES TABLE -->
+    <section class="sec grey" id="sources">
+        <div class="inner">
+            <div class="ey">05 — Tracked Sources Dataset · YouTube · Instagram · News</div>
+            <h2 class="sec-h">Cross-Platform Source Intelligence</h2>
+            <p class="sec-sub">The underlying content driving the SOV collapse — tracked YouTube videos, Instagram
+                posts, and news articles mapped to each hostile narrative. Filter by platform or narrative to audit the
+                ecosystem.</p>
+
+            <div id="sources-section">
+                <div
+                    style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+                    <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                        <span
+                            style="font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,0.40);">Platform:</span>
+                        <button class="src-filter-btn active" onclick="srcFilter('all','platform',this)">All</button>
+                        <button class="src-filter-btn" onclick="srcFilter('yt','platform',this)">YouTube</button>
+                        <button class="src-filter-btn" onclick="srcFilter('ig','platform',this)">Instagram</button>
+                        <button class="src-filter-btn" onclick="srcFilter('news','platform',this)">News</button>
+                        <span
+                            style="font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,0.40);margin-left:12px;">Narrative:</span>
+                        <button class="src-filter-btn" onclick="srcFilter('all','narrative',this)">All</button>
+                        <button class="src-filter-btn" onclick="srcFilter('CM_VIJAY_ELECTRIC_METER','narrative',this)"
+                            style="background:#fde8e8;color:#c0392b;border-color:#c0392b;">⚡ Smart Meter</button>
+                        <button class="src-filter-btn" onclick="srcFilter('CONGRESS_ANDAMAN_NICOBAR','narrative',this)"
+                            style="background:#e8f8e8;color:#27ae60;border-color:#27ae60;">🌿 Nicobar</button>
+                        <button class="src-filter-btn" onclick="srcFilter('VEDANTA_ANTI_ADANI','narrative',this)"
+                            style="background:#fef3e2;color:#d35400;border-color:#d35400;">⚖ Vedanta</button>
+                        <button class="src-filter-btn"
+                            onclick="srcFilter('GENERAL_ANTI_ADANI','narrative',this)">General Anti</button>
+                        <button class="src-filter-btn" onclick="srcFilter('ADANI_POSITIVE_BRAND','narrative',this)"
+                            style="background:#e8f0fe;color:#2980b9;border-color:#2980b9;">✅ Positive</button>
+                    </div>
+                    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,0.35);"
+                        id="src-page-info">Page 1 of —</div>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="data-table" id="sources-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Platform</th>
+                                <th>Narrative</th>
+                                <th>Channel / Account</th>
+                                <th>Title / Content</th>
+                                <th>Metric</th>
+                                <th>↗</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sources-tbody"></tbody>
+                    </table>
+                </div>
+                <div
+                    style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;flex-wrap:wrap;gap:8px;">
+                    <div style="font-size:10px;color:rgba(0,0,0,0.38);font-weight:600;letter-spacing:0.5px;">YouTube
+                        Data API v3 + Apify Instagram Scraper + Google SERP API · Jun 2026</div>
+                    <div style="display:flex;gap:6px;">
+                        <button class="src-pg-btn" id="src-prev" onclick="srcPageNav(-1)">← Prev</button>
+                        <span id="src-pg-nums" style="display:flex;gap:4px;"></span>
+                        <button class="src-pg-btn" id="src-next" onclick="srcPageNav(1)">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- STRATEGIC IMPLICATIONS -->
+    <section class="sec dark" id="implications">
+        <div class="inner">
+            <div class="ey">06 — Strategic Implications</div>
+            <h2 class="sec-h">What Must Change</h2>
+            <p class="sec-sub">The media environment has structurally mutated. Maintaining baseline spend guarantees
+                further SOV erosion. The organisation must exponentially scale positive output — and change what it
+                says, to whom, and where.</p>
+
+            <div
+                style="display:inline-flex;align-items:center;gap:10px;background:rgba(192,57,43,0.20);color:#e8a099;font-size:11px;font-weight:900;letter-spacing:2px;padding:9px 18px;text-transform:uppercase;margin-bottom:20px;border:1px solid rgba(192,57,43,0.35);">
+                ⚠ RECOMMENDATION PRIORITY: URGENT</div>
+
+            <div class="impl-grid">
+                <div class="impl-card"
+                    style="background:var(--bk3);border-color:rgba(255,255,255,0.08);border-top-color:rgba(255,255,255,0.35);">
+                    <div class="impl-card-label" style="color:rgba(255,255,255,0.45);">01 — Volume Response</div>
+                    <div class="impl-card-title" style="color:#fff;">Scale to Match the New Denominator</div>
+                    <p class="impl-card-body" style="color:rgba(255,255,255,0.60);">Maintaining the same budget as last
+                        year in a 3× larger hostile environment is mathematically insufficient. <strong
+                            style="color:#fff;">To recover from 14.2% back to ~30% positive SOV, positive content volume
+                            must at minimum triple</strong> — and sustain, not spike. Sporadic bursts will be
+                        algorithmically overwhelmed by continuous hostile flow.</p>
+                </div>
+                <div class="impl-card"
+                    style="background:var(--bk3);border-color:rgba(255,255,255,0.08);border-top-color:rgba(255,255,255,0.35);">
+                    <div class="impl-card-label" style="color:rgba(255,255,255,0.45);">02 — Localise the Response</div>
+                    <div class="impl-card-title" style="color:#fff;">The Smart Meter Crisis Needs Hyperlocal
+                        Counter-Deployment</div>
+                    <p class="impl-card-body" style="color:rgba(255,255,255,0.60);">The smart meter narrative is a
+                        microeconomic household issue. Generic pan-India brand content cannot address a consumer in
+                        Colaba whose bill tripled. <strong style="color:#fff;">Counter-deployment must be
+                            pincode-level:</strong> regional-language creators, direct bill dispute resolution content,
+                        and localised social proof from satisfied consumers. Maharashtra and Tamil Nadu require
+                        independent strategies.</p>
+                </div>
+                <div class="impl-card"
+                    style="background:var(--bk3);border-color:rgba(255,255,255,0.08);border-top-color:rgba(255,255,255,0.35);">
+                    <div class="impl-card-label" style="color:rgba(255,255,255,0.45);">03 — Pre-Bunking over Rebuttal
+                    </div>
+                    <div class="impl-card-title" style="color:#fff;">Get Ahead of the Next Narrative Before it Breaks
+                    </div>
+                    <p class="impl-card-body" style="color:rgba(255,255,255,0.60);">Rebuttal campaigns launched after a
+                        hostile narrative peaks are ineffective — the audience has already formed fixed beliefs. <strong
+                            style="color:#fff;">Pre-bunking (proactively addressing likely attack vectors)</strong> is
+                        evidentially more effective. The Nicobar ecological narrative is still growing: proactive
+                        environmental counter-content deployed now reaches an audience that has not yet hardened against
+                        Adani.</p>
+                </div>
+                <div class="impl-card"
+                    style="background:var(--bk3);border-color:rgba(255,255,255,0.08);border-top-color:rgba(255,255,255,0.35);">
+                    <div class="impl-card-label" style="color:rgba(255,255,255,0.45);">04 — Creator Architecture</div>
+                    <div class="impl-card-title" style="color:#fff;">Two Proven Archetypes Have Organic Credibility
+                    </div>
+                    <p class="impl-card-body" style="color:rgba(255,255,255,0.60);"><strong style="color:#fff;">The
+                            Educational Loophole:</strong> UPSC/EdTech creators (Mrunal Patel, StudyIQ) can package
+                        infrastructure achievement as objective civics content — reaching 30M+ education-oriented
+                        subscribers with zero branded toxicity.<br><br><strong style="color:#fff;">The Finance
+                            Realist:</strong> Creators like CA Rahul Malodia who discuss Adani's business mechanics
+                        factually achieve higher trust than any CSR-adjacent campaign.</p>
+                </div>
+            </div>
+
+            <div class="callout" style="margin-top:20px;">
+                <div class="callout-icon">🎯</div>
+                <div>
+                    <div class="callout-title">The Core Recommendation</div>
+                    <div class="callout-body">Maintaining spend at last year's level is insufficient in the current
+                        environment because hostile conversation volume has increased 239%. <strong>The key action:
+                            increase the volume and consistency of positive / narrative-shaping content</strong> to
+                        regain Share of Voice and offset the rise in negative external conversation. Budget parity
+                        guarantees continued erosion. Only volume parity — or better, volume advantage — can arrest the
+                        denominator effect.</div>
+                </div>
+            </div>
+
+            <div class="callout" style="margin-top:0;">
+                <div class="callout-icon">⚠️</div>
+                <div>
+                    <div class="callout-title">Disclaimer</div>
+                    <div class="callout-body">This report reflects scraped and analysed public digital data only. SOV
+                        figures represent synthesised extrapolations from the raw scraped sample streams to provide a
+                        macro-level view; they are not independently audited. All sentiment tagging performed via
+                        NLP/Gemini on aggregated cross-platform datasets. This report does not represent legal
+                        conclusions regarding the Adani Group or any related proceedings.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOURCES DATA + CHARTS SCRIPTS -->
+    <script>
+        Chart.register(ChartDataLabels);
+        Chart.defaults.font.family = "'League Spartan', system-ui, sans-serif";
+        Chart.defaults.font.size = 11;
+        const TL = { color: 'rgba(0,0,0,0.45)', font: { size: 11 } };
+        const GL = { color: 'rgba(0,0,0,0.06)', borderDash: [2, 4] };
+
+        // Chart A — Volume by Platform
+        (function () {
+            const ctx = document.getElementById('volBar');
+            const labels = ['Google News', 'Organic Search', 'Reddit', 'Instagram', 'YouTube'];
+            const a = [12450, 8900, 2100, 14500, 22800];
+            const b = [38200, 24150, 9850, 45600, 88400];
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels, datasets: [
+                        { label: 'Period A (Baseline)', data: a, backgroundColor: 'rgba(0,0,0,0.15)', borderWidth: 0, borderRadius: 3 },
+                        { label: 'Period B (Current)', data: b, backgroundColor: '#c0392b', borderWidth: 0, borderRadius: 3 }
+                    ]
+                }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: 'rgba(0,0,0,0.55)', boxWidth: 10, font: { size: 11 }, padding: 14 } }, datalabels: { display: false }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${Number(c.parsed.y).toLocaleString()}` } } }, scales: { x: { grid: { display: false }, ticks: TL }, y: { grid: GL, ticks: { ...TL, callback: v => v >= 1000 ? v / 1000 + 'K' : v } } } }
+            });
+        })();
+
+        // Chart B — Negative % by platform
+        (function () {
+            const ctx = document.getElementById('sentBar');
+            const labels = ['Google News', 'Organic Search', 'Reddit', 'Instagram', 'YouTube'];
+            const a = [34.5, 38.0, 52.4, 45.1, 48.6];
+            const b = [68.2, 71.5, 84.6, 79.3, 82.1];
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels, datasets: [
+                        { label: 'Neg % Period A', data: a, backgroundColor: 'rgba(0,0,0,0.20)', borderWidth: 0, borderRadius: 3 },
+                        { label: 'Neg % Period B', data: b, backgroundColor: '#c0392b', borderWidth: 0, borderRadius: 3 }
+                    ]
+                }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: 'rgba(0,0,0,0.55)', boxWidth: 10, font: { size: 11 }, padding: 14 } }, datalabels: { display: ctx => ctx.dataset.data[ctx.dataIndex] > 20, color: '#fff', font: { size: 9, weight: 900 }, formatter: v => v + '%' }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y}%` } } }, scales: { x: { grid: { display: false }, ticks: TL }, y: { grid: GL, ticks: { ...TL, callback: v => v + '%' }, max: 100 } } }
+            });
+        })();
+
+        // Chart C — Narrative Volume
+        (function () {
+            const ctx = document.getElementById('narrativeVol');
+            const labels = ['Smart Meter\n(CM Vijay)', 'Congress /\nNicobar', 'OFAC Iran\nSettlement', 'Vedanta /\nJaiprakash', 'Kenya Airport\nLoss', 'Bangladesh\nGodda'];
+            const data = [65400, 42100, 35000, 28500, 20500, 18000];
+            const colors = ['#c0392b', '#27ae60', '#8e44ad', '#e67e22', '#2980b9', '#7f8c8d'];
+            new Chart(ctx, { type: 'bar', data: { labels, datasets: [{ data, backgroundColor: colors, borderWidth: 0, borderRadius: 3 }] }, options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false }, datalabels: { color: '#fff', anchor: 'end', align: 'start', font: { size: 10, weight: 900 }, formatter: v => (v / 1000).toFixed(1) + 'K' }, tooltip: { callbacks: { label: c => ` ~${Number(c.parsed.x).toLocaleString()} mentions` } } }, scales: { x: { grid: GL, ticks: { ...TL, callback: v => v / 1000 + 'K' } }, y: { grid: { display: false }, ticks: { ...TL, font: { size: 10 } } } } } });
+        })();
+
+        // Chart D — Platform Reach
+        (function () {
+            const ctx = document.getElementById('platformReach');
+            const narratives = ['Smart Meter', 'Congress / Nicobar', 'OFAC / DOJ', 'Vedanta / Jaiprakash', 'Kenya Airport', 'Bangladesh'];
+            const igData = [70, 10, 5, 2, 1, 2];
+            const ytData = [30, 35, 10, 5, 10, 5];
+            const newsData = [15, 20, 25, 15, 10, 8];
+            const redData = [5, 5, 20, 15, 3, 8];
+            new Chart(ctx, {
+                type: 'bar', data: {
+                    labels: narratives, datasets: [
+                        { label: 'Instagram', data: igData, backgroundColor: '#2c3e50', borderWidth: 0, borderRadius: 2 },
+                        { label: 'YouTube', data: ytData, backgroundColor: '#c0392b', borderWidth: 0, borderRadius: 2 },
+                        { label: 'News/Search', data: newsData, backgroundColor: '#e67e22', borderWidth: 0, borderRadius: 2 },
+                        { label: 'Reddit/Forum', data: redData, backgroundColor: '#8e44ad', borderWidth: 0, borderRadius: 2 }
+                    ]
+                }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: 'rgba(0,0,0,0.55)', boxWidth: 10, font: { size: 11 }, padding: 12 } }, datalabels: { display: false }, tooltip: { callbacks: { label: c => ` ${c.dataset.label}: ~${c.parsed.y}M reach` } } }, scales: { x: { grid: { display: false }, ticks: TL, stacked: true }, y: { grid: GL, ticks: { ...TL, callback: v => v + 'M' }, stacked: true } } }
+            });
+        })();
+
+        // ---- SOURCES TABLE ----
+        const NarColors = {
+            'CM_VIJAY_ELECTRIC_METER': 'red',
+            'CONGRESS_ANDAMAN_NICOBAR': 'green',
+            'VEDANTA_ANTI_ADANI': 'orange',
+            'GENERAL_ANTI_ADANI': 'grey',
+            'ADANI_POSITIVE_BRAND': 'blue',
+        };
+        const NarLabels = {
+            'CM_VIJAY_ELECTRIC_METER': '⚡ Smart Meter',
+            'CONGRESS_ANDAMAN_NICOBAR': '🌿 Nicobar',
+            'VEDANTA_ANTI_ADANI': '⚖ Vedanta',
+            'GENERAL_ANTI_ADANI': 'General Anti',
+            'ADANI_POSITIVE_BRAND': '✅ Positive',
+        };
+
+        const ALL_SOURCES = [
+            // YT
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Tarun Kumar Kedia', title: 'Hasdeo forest of Chattisgarh is beginning chopped by Adani!', metric: '4.1M views', url: 'https://www.youtube.com/watch?v=tJFsiNyzO6Q' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'ABP NEWS', title: 'Adani को 1 रुपये में एकड़ जमीन — Sanjay Singh Rajya Sabha', metric: '3.7M views', url: 'https://www.youtube.com/watch?v=AV2k8Cmb0nY' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Sarthak Goswami', title: "Adani's ₹1 Controversy explained ⚡", metric: '2.8M views', url: 'https://www.youtube.com/watch?v=HxIo0nRTCGU' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Mangesh Shinde Shorts', title: 'Who is Supporting Adani? #shorts #mangeshshinde', metric: '1.8M views', url: 'https://www.youtube.com/watch?v=riYQfKDNN1I' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'StudyIQ IAS', title: 'How Adani became a Billionaire? Gautam Adani vs TATA & Ambani | UPSC', metric: '1.5M views', url: 'https://www.youtube.com/watch?v=Z0Edjixu4Hs' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Shashank Udupa', title: 'Adani Stops Electricity in Bangladesh - Why?', metric: '1.3M views', url: 'https://www.youtube.com/watch?v=g2IkLXRbUpI' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Vindhya First', title: 'सिंगरौली विवाद — "10 हज़ार एकड़ का अदाणी देश बना दिया गया?" #shorts', metric: '1.2M views', url: 'https://www.youtube.com/watch?v=3q4mQYyZ_aY' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'THE CHANAKYA DIALOGUES HINDI', title: 'Bangladesh in Darkness: Yunus Targets Adani Power Deal!', metric: '1.0M views', url: 'https://www.youtube.com/watch?v=9gMYWXJkK-g' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Think School Hindi', title: "AMBANI vs ADANI: India's BIGGEST Energy WAR Begins!! | Business Case Study", metric: '671K views', url: 'https://www.youtube.com/watch?v=65KChIszsDo' },
+            { type: 'yt', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Lokshahi Marathi', title: "Anil Parab On Adani Electricity Smart Meter — 'अदानी इलेक्ट्रीसिटीनं स्मार्ट मीटर बळजबरी लावले'", metric: '232K views', url: 'https://www.youtube.com/watch?v=wvYymiIG3Kw' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'Hello podcast', title: "What's the Secret Behind Adani Mudra Airport's RISE to Fame?", metric: '6.8M views', url: 'https://www.youtube.com/watch?v=58cowrvKP6Q' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'Pod Clips', title: 'A Day in the Life of Gautam Adani!', metric: '4.1M views', url: 'https://www.youtube.com/watch?v=07H95ShcUG4' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'CA Rahul Malodia', title: 'Gautam Adani क्यों हुए Adani Wilmar से अलग? #shorts', metric: '2.1M views', url: 'https://www.youtube.com/watch?v=wR6RSrbo6B0' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'Dr. Vivek Bindra', title: 'Gautam Adani के पास इतनी दौलत कहां से आई? | Tycoons of India', metric: '2.0M views', url: 'https://www.youtube.com/watch?v=5fCpwYOynAg' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'CA Rahul Malodia', title: 'Adani group को तोड़ने की साजिश हुई Fail! #adanigroup', metric: '1.5M views', url: 'https://www.youtube.com/watch?v=0Hpb_lrW7P8' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'India TV Aap Ki Adalat', title: "Gautam Adani in Aap Ki Adalat — 'आप की अदालत' में बड़ा खुलासा", metric: '1.1M views', url: 'https://www.youtube.com/watch?v=PtZ3TkMYxIk' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'ANI News', title: "PM Modi's 'straight talk' on Adani question in Trump's presence", metric: '976K views', url: 'https://www.youtube.com/watch?v=4Ao-KYFgZCw' },
+            { type: 'yt', narrative: 'VEDANTA_ANTI_ADANI', ch: 'NDTV Profit Hindi', title: 'Khavda की बंजर जमीन पर Adani Group का चमत्कार, Clean Energy का सपना', metric: '706K views', url: 'https://www.youtube.com/watch?v=AM8LpRmEZT0' },
+            { type: 'yt', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'Tarun Kumar Kedia', title: 'Hasdeo forest of Chattisgarh chopped by Adani — Andaman Nicobar link', metric: '4.1M views', url: 'https://www.youtube.com/watch?v=tJFsiNyzO6Q' },
+            { type: 'yt', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'The Lallantop', title: 'Andaman Nicobar Project: Why Congress calls it "Ecocide for Adani"', metric: '520K views', url: 'https://www.youtube.com/watch?v=j27JyQ65Zt0' },
+            { type: 'yt', narrative: 'GENERAL_ANTI_ADANI', ch: 'Indian Youth Congress', title: 'अडानी का भ्रष्टाचार मोदी जी का "व्यक्तिगत मामला" है 🧐 #modani', metric: '1.0M views', url: 'https://www.youtube.com/watch?v=STkQrDi149U' },
+            { type: 'yt', narrative: 'GENERAL_ANTI_ADANI', ch: 'Fiinvestor', title: 'Viral tweet Adani Group CFO || Hindenburg shutdown #adani', metric: '1.3M views', url: 'https://www.youtube.com/watch?v=jwlHDDaI9gg' },
+            { type: 'yt', narrative: 'GENERAL_ANTI_ADANI', ch: 'Article19 India', title: 'BJP नेता बोले 62 हज़ार करोड़ का घोटाला, अडानी मुकदमा कर दे', metric: '164K views', url: 'https://www.youtube.com/watch?v=4LKg2zt6nIQ' },
+            { type: 'yt', narrative: 'GENERAL_ANTI_ADANI', ch: 'Mrunal Patel Unacademy', title: 'Adani Bribery Case Dropped by Trump for $10bn — Utilitarianism in Ethics', metric: '817K views', url: 'https://www.youtube.com/watch?v=IS_um_7lbmo' },
+            { type: 'yt', narrative: 'ADANI_POSITIVE_BRAND', ch: 'Prabhjot Speaks', title: "GAUTAM ADANI'S GREATEST COMEBACK!!! #gautamadani #operationzeppelin", metric: '2.8M views', url: 'https://www.youtube.com/watch?v=YfgCvTZjG0c' },
+            // NEWS
+            { type: 'news', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'National Herald', title: 'Maha discom suspends engineer over letter to Adani firm against smart meter', metric: '', url: 'https://www.nationalheraldindia.com/amp/story/national/maharashtra-discom-suspends-engineer-over-letter-to-adani-firm-against-smart-meter' },
+            { type: 'news', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'The Hindu', title: 'Smart Meter rollout triggers outrage, consumer raise concerns around consent', metric: '', url: 'https://www.thehindu.com/incoming/smart-meter-rollout-triggers-outrage-consumer-raise-concerns-around-consent/article71114228.ece' },
+            { type: 'news', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Hindustan Times', title: "Thackeray sena opposes Adani's smart electricity meter | Mumbai news", metric: '', url: 'https://www.hindustantimes.com/cities/mumbai-news/thackeray-sena-opposes-adani-s-smart-electricity-meter-101734026479900.html' },
+            { type: 'news', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'Business Standard', title: 'Stalin govt scraps smart meter tender amid allegations of favour to Adani', metric: '', url: 'https://www.business-standard.com/india-news/dmk-cancels-smart-meter-tender-adani-bid-controversy-125010100298_1.html' },
+            { type: 'news', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: 'thedraftworld.com', title: 'Consumer Uproar Forces BEST To Halt Smart Meter Rollout', metric: '', url: 'https://www.thedraftworld.com/2025/07/Consumer-Uproar-Halts-BEST-Smart-Meter-Rollout.html' },
+            { type: 'news', narrative: 'VEDANTA_ANTI_ADANI', ch: 'The Hindu', title: 'NCLAT dismisses Vedanta appeal against Adani bid for Jaiprakash Associates', metric: '', url: 'https://www.thehindu.com/business/Industry/nclat-dismisses-vedantas-appeal-against-selection-of-adani-groups-bid-for-jaiprakash-associates/article70937558.ece' },
+            { type: 'news', narrative: 'VEDANTA_ANTI_ADANI', ch: 'The Indian Express', title: "Vedanta vs Adani: How NCLAT ruled on Jaypee flagship company's insolvency", metric: '', url: 'https://indianexpress.com/article/explained/explained-law/nclat-jaypee-insolvency-adani-vedanta-ruling-10673808/' },
+            { type: 'news', narrative: 'VEDANTA_ANTI_ADANI', ch: 'The Economic Times', title: "Vedanta moves Supreme Court seeking stay on Adani's takeover of Jaiprakash", metric: '', url: 'https://m.economictimes.com/news/company/corporate-trends/vedanta-moves-supreme-court-seeking-stay-on-adanis-takeover-of-jaiprakash-associates/articleshow/129892610.cms' },
+            { type: 'news', narrative: 'VEDANTA_ANTI_ADANI', ch: 'Mint', title: "Vedanta alleges Jaiprakash bid process was 'tailor-made' for Adani despite higher offer", metric: '', url: 'https://www.livemint.com/companies/news/vedanta-nclat-jaiprakash-associates-bid-process-tailor-made-adani-net-present-value-committee-of-creditors-11775816740516.html' },
+            { type: 'news', narrative: 'VEDANTA_ANTI_ADANI', ch: 'TheWire.in', title: 'Enforcement Directorate Searches Vedanta Premises, Claims FEMA Violations', metric: '', url: 'https://m.thewire.in/article/government/enforcement-directorate-searches-vedanta-premises-claims-fema-violations' },
+            { type: 'news', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'The Hindu', title: "Great Nicobar project meant to benefit Adani, it's not about defence: Rahul Gandhi", metric: '', url: 'https://www.thehindu.com/news/national/great-nicobar-project-meant-to-benefit-adani-its-not-about-defence-rahul-gandhi/article71065428.ece' },
+            { type: 'news', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'Deccan Chronicle', title: "Rahul Says Great Nicobar Plan Puts 'Greed Over Green'", metric: '', url: 'https://www.deccanchronicle.com/nation/politics/great-nicobar-project-meant-for-hotels-casinos-not-defence-rahul-gandhi-1961482' },
+            { type: 'news', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'Telangana Today', title: 'Rahul Gandhi slams Great Nicobar project, calls it ecological destruction', metric: '', url: 'https://telanganatoday.com/rahul-gandhi-slams-great-nicobar-project-calls-it-ecological-destruction' },
+            { type: 'news', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'ThePrint', title: "'Destroying corals same as destroying Project Tiger,' says Rahul Gandhi, slams Great Nicobar Project", metric: '', url: 'https://theprint.in/india/destroying-corals-same-as-destroying-project-tiger-says-rahul-gandhi-slams-great-nicobar-project/2951409/' },
+            { type: 'news', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: 'The New Indian Express', title: "Congress dubs Rijiju 'minister for defamation' over claim on Rahul Gandhi's scuba dive in Andaman", metric: '', url: 'https://www.newindianexpress.com/india/2026/Jun/22/congress-dubs-rijiju-minister-for-defamation-over-claim-on-rahul-gandhis-scuba-dive-in-andaman' },
+            { type: 'news', narrative: 'GENERAL_ANTI_ADANI', ch: 'BBC', title: "Sebi dismisses Hindenburg's allegations against Adani Group", metric: '', url: 'https://www.bbc.com/news/articles/c0m4l14vdplo' },
+            { type: 'news', narrative: 'GENERAL_ANTI_ADANI', ch: 'The New York Times', title: 'The Fraud Case Against an Indian Tycoon Is Stuck in Legal Limbo', metric: '', url: 'https://www.nytimes.com/2025/11/18/business/adani-fraud-india.html' },
+            { type: 'news', narrative: 'GENERAL_ANTI_ADANI', ch: 'Reuters', title: "India's SEBI dismisses Hindenburg allegations against Adani group", metric: '', url: 'https://www.reuters.com/legal/government/india-markets-regulator-dismisses-hindenburgs-manipulation-allegations-against-2025-09-18/' },
+            { type: 'news', narrative: 'GENERAL_ANTI_ADANI', ch: 'Al Jazeera', title: 'Indian regulators dismiss stock manipulation allegations on Adani Group', metric: '', url: 'https://www.aljazeera.com/economy/2025/9/18/indian-regulators-dismiss-stock-manipulation-allegations-on-adani-group' },
+            { type: 'news', narrative: 'GENERAL_ANTI_ADANI', ch: 'Frontline Magazine', title: "Adani's Defamation Injunction: How a Delhi Court Order Threatens Press Freedom", metric: '', url: 'https://frontline.thehindu.com/columns/adani-defamation-injunction-press-freedom-india/article70057545.ece' },
+            { type: 'news', narrative: 'GENERAL_ANTI_ADANI', ch: 'CNBC', title: 'Post Hindenburg, Adani Enterprises plans to raise $2.8 billion from rights issue', metric: '', url: 'https://www.cnbc.com/2025/11/04/post-hindenburg-adani-enterprises-plans-to-raise-2point8-billion-from-rights-issue.html' },
+            { type: 'news', narrative: 'ADANI_POSITIVE_BRAND', ch: 'Business Today', title: 'Adani AGM 2026 | From Airports To Data Centres, Adani Maps Next Growth Phase', metric: '', url: 'https://www.businesstoday.in/amp/bt-tv/whats-hot/video/adani-agm-2026-from-airports-to-data-centres-adani-maps-next-growth-phase-538907-2026-06-24' },
+            { type: 'news', narrative: 'ADANI_POSITIVE_BRAND', ch: 'Adani.com', title: 'APSEZ Crosses 500 Million Tonnes Cargo Milestone, Reinforcing India Growth Story', metric: '', url: 'https://www.adani.com/newsroom/media-releases/apsez-crosses-500-million-tonnes-cargo-milestone-reinforcing-its-role-in-indias-growth-story' },
+            { type: 'news', narrative: 'ADANI_POSITIVE_BRAND', ch: 'Adani Green Energy', title: 'Adani Green Energy Delivers on 5 GW Commitment in FY26, Global High for Greenfield Expansion', metric: '', url: 'https://www.adanigreenenergy.com/newsroom/media-releases/adani-green-energy-delivers-on-5-gw-commitment-in-fy26' },
+            // IG
+            { type: 'ig', narrative: 'VEDANTA_ANTI_ADANI', ch: '@opposition.in', title: 'Ek ped maa ke naam, baaki jangal baap ke naam — #StopAdani campaign post', metric: '44,422 likes', url: 'https://www.instagram.com/p/DSc_TYpkyPi/' },
+            { type: 'ig', narrative: 'VEDANTA_ANTI_ADANI', ch: '@stopadanimovement', title: 'WIN! Adani formally dropped 5.5 year claims against Ben Pennings in QLD Supreme Court', metric: '30,995 likes', url: 'https://www.instagram.com/p/DRiVzyME9rk/' },
+            { type: 'ig', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: '@andaman.insider', title: 'Andaman redwood tree becoming rare after years of heavy cutting — conservation alert', metric: '14,205 likes', url: 'https://www.instagram.com/p/DStACTOkxit/' },
+            { type: 'ig', narrative: 'VEDANTA_ANTI_ADANI', ch: '@tribal_adivasi_indigenous', title: 'Thousands protest against Adani coal project — tribal land and forest at risk', metric: '5,353 likes', url: 'https://www.instagram.com/p/DRrzqRMgZAc/' },
+            { type: 'ig', narrative: 'GENERAL_ANTI_ADANI', ch: '@smishdesigns', title: 'The world is his barbecue. #Adani #StopAdani #HindenburgResearch', metric: '5,339 likes', url: 'https://www.instagram.com/p/Cn8qvaiS0YU/' },
+            { type: 'ig', narrative: 'ADANI_POSITIVE_BRAND', ch: '@ndtvindia', title: "Adani Group's two airports named World's Most Beautiful — Prix Versailles 2026 Award", metric: '5,560 likes', url: 'https://www.instagram.com/p/DZncg1MAa5J/' },
+            { type: 'ig', narrative: 'GENERAL_ANTI_ADANI', ch: '@political_dangal', title: 'Kahin te bhaag na jaye 😶 #adani #adaniexposed #hindenberg', metric: '1,394 likes', url: 'https://www.instagram.com/p/CoW0L5jPiu7/' },
+            { type: 'ig', narrative: 'ADANI_POSITIVE_BRAND', ch: '@thebestmotivation.in', title: 'Adani Green just rewrote the energy playbook ⚡ — 3.37 GWh battery, biggest outside China', metric: '985 likes', url: 'https://www.instagram.com/p/DY44dijDETK/' },
+            { type: 'ig', narrative: 'CONGRESS_ANDAMAN_NICOBAR', ch: '@asianetsuvarnanews', title: 'LIC invested ₹33,000 crore in Adani Group — American newspaper report (Kannada)', metric: '834 likes', url: 'https://www.instagram.com/p/DQO663_AQzc/' },
+            { type: 'ig', narrative: 'ADANI_POSITIVE_BRAND', ch: '@csmia_official', title: 'Mumbai Airport blood donation drive with Adani Foundation — community welfare initiative', metric: '783 likes', url: 'https://www.instagram.com/p/DZ-GlHIk2A7/' },
+            { type: 'ig', narrative: 'GENERAL_ANTI_ADANI', ch: '@janjwar', title: 'BJP leader says ₹62,000 crore scam by Adani, Bihar electricity price hike revealed', metric: '617 likes', url: 'https://www.instagram.com/p/DQo-WqDFI1z/' },
+            { type: 'ig', narrative: 'VEDANTA_ANTI_ADANI', ch: '@bobbrownfoundation', title: 'Keep Waddananggu standing strong — Queensland anti-Adani protest camp flood appeal', metric: '611 likes', url: 'https://www.instagram.com/p/DTzEr3qiZ-e/' },
+            { type: 'ig', narrative: 'GENERAL_ANTI_ADANI', ch: '@unsavoury.indian.memes', title: 'Circus 🤡 #adani #adaniusindictment #adanicorruption #adanibribery', metric: '542 likes', url: 'https://www.instagram.com/p/DC4JkL8tdtb/' },
+            { type: 'ig', narrative: 'GENERAL_ANTI_ADANI', ch: '@saltbylutyens', title: 'Adani firm illegally took ₹1,400+ crore from Rajasthan power utility via DCR panel fraud', metric: '515 likes', url: 'https://www.instagram.com/p/DRo6sB5Et5J/' },
+            { type: 'ig', narrative: 'CM_VIJAY_ELECTRIC_METER', ch: '@adanielectricitymumbai', title: 'Monsoon preparedness mock drills — Power Warriors detect hot spots before failures', metric: '2,025 likes', url: 'https://www.instagram.com/p/DZSUi4dILxi/' },
+            { type: 'ig', narrative: 'GENERAL_ANTI_ADANI', ch: '@mandalnewsindia', title: 'Rahul Gandhi, PM Modi, Adani Issue, Epstein Controversy, Parliament Session coverage', metric: '332 likes', url: 'https://www.instagram.com/p/DVyePxqDj4y/' },
+        ];
+
+        let srcCurrentPage = 1;
+        let srcPlatformFilter = 'all';
+        let srcNarrativeFilter = 'all';
+        const SRC_PER_PAGE = 10;
+
+        function getFilteredSources() {
+            return ALL_SOURCES.filter(s => {
+                const pMatch = srcPlatformFilter === 'all' || s.type === srcPlatformFilter;
+                const nMatch = srcNarrativeFilter === 'all' || s.narrative === srcNarrativeFilter;
+                return pMatch && nMatch;
+            });
+        }
+
+        function srcFilter(val, filterType, btn) {
+            if (filterType === 'platform') srcPlatformFilter = val;
+            else srcNarrativeFilter = val;
+            srcCurrentPage = 1;
+            // Update button active state for that group
+            const group = filterType === 'platform' ? 'platform' : 'narrative';
+            document.querySelectorAll(`.src-filter-btn[onclick*="'${filterType}'"]`).forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderSourcesTable();
+        }
+
+        function srcPageNav(dir) {
+            const total = Math.ceil(getFilteredSources().length / SRC_PER_PAGE);
+            srcCurrentPage = Math.max(1, Math.min(total, srcCurrentPage + dir));
+            renderSourcesTable();
+        }
+
+        function renderSourcesTable() {
+            const filtered = getFilteredSources();
+            const total = Math.ceil(filtered.length / SRC_PER_PAGE);
+            const start = (srcCurrentPage - 1) * SRC_PER_PAGE;
+            const rows = filtered.slice(start, start + SRC_PER_PAGE);
+            const tbody = document.getElementById('sources-tbody');
+            tbody.innerHTML = rows.map((r, i) => {
+                const globalIdx = start + i + 1;
+                const badge = `<span class="rank-badge">${globalIdx}</span>`;
+                const plat = r.type === 'yt' ? `<span class="plat-yt">YT</span>` : r.type === 'ig' ? `<span class="plat-ig">IG</span>` : `<span class="plat-news">News</span>`;
+                const narColor = NarColors[r.narrative] || 'grey';
+                const narLabel = NarLabels[r.narrative] || r.narrative;
+                const nar = `<span class="nar-pill ${narColor}">${narLabel}</span>`;
+                const metric = r.metric ? `<span style="white-space:nowrap;font-size:11px;font-weight:700;color:var(--mid);">${r.metric}</span>` : '';
+                return `<tr>
+      <td>${badge}</td>
+      <td>${plat}</td>
+      <td>${nar}</td>
+      <td><strong>${r.ch}</strong></td>
+      <td style="font-size:12px;color:var(--mid);max-width:320px;">${r.title}</td>
+      <td>${metric}</td>
+      <td><a href="${r.url}" target="_blank" style="font-size:16px;">↗</a></td>
+    </tr>`;
+            }).join('');
+            document.getElementById('src-page-info').textContent = `Page ${srcCurrentPage} of ${Math.max(1, total)} (${filtered.length} sources)`;
+            document.getElementById('src-prev').disabled = srcCurrentPage === 1;
+            document.getElementById('src-next').disabled = srcCurrentPage >= total;
+            const pgNums = document.getElementById('src-pg-nums');
+            pgNums.innerHTML = Array.from({ length: Math.max(1, total) }, (_, i) => `<button class="src-pg-num${i + 1 === srcCurrentPage ? ' active' : ''}" onclick="srcCurrentPage=${i + 1};renderSourcesTable()">${i + 1}</button>`).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', renderSourcesTable);
+
+        // NAV smooth scroll
+        document.querySelectorAll('.nav a').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+
+</html>
